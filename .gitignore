@@ -1,6 +1,6 @@
 db.sqlite3
-**.idea/
-**.venvtodo/
+.idea/
+.venvtodo/
 *.pyc
-**__pycache__/
+__pycache__/
 
