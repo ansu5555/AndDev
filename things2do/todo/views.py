@@ -1,10 +1,11 @@
-from django.shortcuts import render, render_to_response
-from django.template import loader, Context, RequestContext
+from django.shortcuts import render
 from django.http import Http404
-
+from todo.models import  *
 
 # Create your views here.
 
 
 def home(request):
-    return render_to_response('home.html')
+    allTask = todo_lists.objects.all()
+    return render(request, 'home.html', {'alltsk': allTask})
+
