@@ -22,4 +22,5 @@ urlpatterns = {
 
     # todoapp urls
     url(r'^$', views.home, name='home'),
+    url(r'^addtask/', views.addtask, name='addtask'),
 }
