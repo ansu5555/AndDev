@@ -9,5 +9,5 @@ Features
   
   Delete and Edit those tasks.
   
-  View Completed, Pending and overdue tasks.
+  View Completed, Pending and Overdue tasks.
   
