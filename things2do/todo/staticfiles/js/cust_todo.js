@@ -2,7 +2,7 @@ $(document).ready(function(){
 
 
     $("#date_provider").datepicker({
-        format: "dd-mm-yyyy",
+        format: "yyyy-mm-dd",
         autoclose: true,
         todayHighlight: true
     });
@@ -15,29 +15,39 @@ $(document).ready(function(){
 
     $("td[data-edtname]").click(function(){
 
-        if ($(this).next().is("del")) {
-            $(this).next("del").children("td").unwrap();
-            $(this).closest("tr").css("background-color", "#ffffff");
-            $(this).children("span").removeClass("fa-check-square-o");
-            $(this).children("span").addClass("fa-square-o");
-            $(this).closest("tr").find("#Selector").val("edt");
+        if ($(this).next().children().is("del")) {
+            $(this).next("td").children("del").contents().unwrap();
+            $(this).closest("tr").removeClass("task-complete");
+            $(this).children("span").removeClass("fa-check-square");
+            $(this).children("span").addClass("fa-square");
             $(this).closest("tr").find("#Value").val("False");
         }
         else {
-            $(this).next("td").wrap("<del></del>");
-            $(this).closest("tr").css("background-color", "#cccccc");
-            $(this).children("span").removeClass("fa-square-o");
-            $(this).children("span").addClass("fa-check-square-o");
-            $(this).closest("tr").find("#Selector").val("edt");
+            $(this).next("td").wrapInner('<del class="wrap"></del>');
+            $(this).closest("tr").addClass("task-complete");
+            $(this).children("span").removeClass("fa-square");
+            $(this).children("span").addClass("fa-check-square");
             $(this).closest("tr").find("#Value").val("True");
         }
+        $(this).closest("tr").find("#Selector").val("edt");
+//        $(this).closest("tr").find("form").submit();
 
     });
 
 
     $("td[data-delname]").click(function(){
-        $(this).closest("tr").remove();
-        $(this).closest("tr").find("#Selector").val("del");
+        $("#dltcnfModal").modal();
+        var rowid = $(this).closest("tr").attr("id");
+        $("#dltcnf").attr("data-delid", rowid);
+//        $(this).closest("tr").remove();
+//        $(this).closest("tr").find("#Selector").val("del");
+    });
+
+
+    $("#dltcnf").click(function(){
+        var delid = "#" + $(this).attr("data-delid");
+        $(delid).remove();
+//        $(this).closest("tr").find("#Selector").val("del");
     });
 
 
