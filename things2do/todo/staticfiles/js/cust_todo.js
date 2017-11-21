@@ -39,15 +39,24 @@ $(document).ready(function(){
         $("#dltcnfModal").modal();
         var rowid = $(this).closest("tr").attr("id");
         $("#dltcnf").attr("data-delid", rowid);
-//        $(this).closest("tr").remove();
-//        $(this).closest("tr").find("#Selector").val("del");
     });
 
 
     $("#dltcnf").click(function(){
         var delid = "#" + $(this).attr("data-delid");
-        $(delid).remove();
-//        $(this).closest("tr").find("#Selector").val("del");
+        var delfrm = $(delid).find("form");
+        $.ajax({
+            type: $(delfrm).attr('method'),
+            url: $(delfrm).attr('action'),
+            data: {
+                nIdentifier : $(delid).find("#Identifier").val(),
+                nSelector : "del",
+                csrfmiddlewaretoken:$("input[name=csrfmiddlewaretoken]").val()
+                },
+            success: function (){
+                $(delid).remove();
+            }
+        });
     });
 
 
