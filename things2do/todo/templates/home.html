@@ -113,8 +113,7 @@
                         <form role="form" action="/tskcmplt/" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="nIdentifier" id="Identifier" value={{tsk.id}}>
-                            <input type="hidden" name="nSelector" id="Selector" value="">
-                            <input type="hidden" name="nValue" id="Value" value="">
+                            <input type="hidden" name="nValue" id="Value" value="{{tsk.todo_complete}}">
                             <td data-edtname={{tsk.id}}><span class="fa fa-check-square" aria-hidden="true"></span></td>
                             <td>
                                 <del>{{ tsk.todo_detail }}</del>
@@ -129,8 +128,7 @@
                         <form role="form" action="/tskcmplt/" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="nIdentifier" id="Identifier" value={{tsk.id}}>
-                            <input type="hidden" name="nSelector" id="Selector" value="">
-                            <input type="hidden" name="nValue" id="Value" value="">
+                            <input type="hidden" name="nValue" id="Value" value="{{tsk.todo_complete}}">
                             <td data-edtname={{tsk.id}}><span class="fa fa-square" aria-hidden="true"></span></td>
                             <td>{{ tsk.todo_detail }}</td>
                             <td class="text-center">{{ tsk.todo_duedt }}</td>

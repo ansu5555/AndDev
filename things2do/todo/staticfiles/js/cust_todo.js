@@ -14,24 +14,45 @@ $(document).ready(function(){
 
 
     $("td[data-edtname]").click(function(){
-
-        if ($(this).next().children().is("del")) {
-            $(this).next("td").children("del").contents().unwrap();
-            $(this).closest("tr").removeClass("task-complete");
-            $(this).children("span").removeClass("fa-check-square");
-            $(this).children("span").addClass("fa-square");
-            $(this).closest("tr").find("#Value").val("False");
+        var edtfrm = $(this).closest("tr").find("form");
+        if ($(this).closest("tr").find("#Value").val()=="True") {
+            $.ajax({
+                type: $(edtfrm).attr('method'),
+                url: $(edtfrm).attr('action'),
+                data: {
+                    nIdentifier : $(this).closest("tr").find("#Identifier").val(),
+                    nSelector : "edt",
+                    nValue : "False",
+                    csrfmiddlewaretoken:$("input[name=csrfmiddlewaretoken]").val()
+                    },
+                success: function (){
+                    $("td[data-edtname]").next("td").children("del").contents().unwrap();
+                    $("td[data-edtname]").closest("tr").find("#Value").val("False");
+                    $("td[data-edtname]").closest("tr").removeClass("task-complete");
+                    $("td[data-edtname]").children("span").removeClass("fa-check-square");
+                    $("td[data-edtname]").children("span").addClass("fa-square");
+                }
+            });
         }
         else {
-            $(this).next("td").wrapInner('<del class="wrap"></del>');
-            $(this).closest("tr").addClass("task-complete");
-            $(this).children("span").removeClass("fa-square");
-            $(this).children("span").addClass("fa-check-square");
-            $(this).closest("tr").find("#Value").val("True");
+            $.ajax({
+                type: $(edtfrm).attr('method'),
+                url: $(edtfrm).attr('action'),
+                data: {
+                    nIdentifier : $(this).closest("tr").find("#Identifier").val(),
+                    nSelector : "edt",
+                    nValue : "True",
+                    csrfmiddlewaretoken:$("input[name=csrfmiddlewaretoken]").val()
+                    },
+                success: function (){
+                    $("td[data-edtname]").next("td").wrapInner('<del class="wrap"></del>');
+                    $("td[data-edtname]").closest("tr").find("#Value").val("True");
+                    $("td[data-edtname]").closest("tr").addClass("task-complete");
+                    $("td[data-edtname]").children("span").removeClass("fa-square");
+                    $("td[data-edtname]").children("span").addClass("fa-check-square");
+                }
+            });
         }
-        $(this).closest("tr").find("#Selector").val("edt");
-//        $(this).closest("tr").find("form").submit();
-
     });
 
 

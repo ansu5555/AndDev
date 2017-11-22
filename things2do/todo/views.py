@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, HttpResponseRedirect
 from todo.models import  *
 
 # Create your views here.
@@ -11,10 +11,10 @@ def home(request):
 
 
 def addtask(request):
-    obj_todolist = todo_lists(todo_duedt=request.POST['nDateProvider'], todo_detail=request.POST['nTaskDetails'])
-    obj_todolist.save()
-    allTask = todo_lists.objects.all()
-    return render(request, 'home.html', {'alltsk': allTask})
+    if request.method == 'POST':
+        obj_todolist = todo_lists(todo_duedt=request.POST['nDateProvider'], todo_detail=request.POST['nTaskDetails'])
+        obj_todolist.save()
+    return HttpResponseRedirect('/')
 
 
 def tskcmplt(request):
