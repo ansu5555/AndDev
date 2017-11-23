@@ -24,4 +24,7 @@ urlpatterns = {
     url(r'^$', views.home, name='home'),
     url(r'^addtask/', views.addtask, name='addtask'),
     url(r'^tskcmplt/', views.tskcmplt, name='tskcmplt'),
+    url(r'^pendingtasks/', views.pendingtasks, name='pendingtasks'),
+    url(r'^completedtasks/', views.completedtasks, name='completedtasks'),
+    url(r'^overduetasks/', views.overduetasks, name='overduetasks'),
 }

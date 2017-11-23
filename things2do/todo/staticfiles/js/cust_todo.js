@@ -15,6 +15,7 @@ $(document).ready(function(){
 
     $("td[data-edtname]").click(function(){
         var edtfrm = $(this).closest("tr").find("form");
+        var edttd = $(this);
         if ($(this).closest("tr").find("#Value").val()=="True") {
             $.ajax({
                 type: $(edtfrm).attr('method'),
@@ -26,11 +27,11 @@ $(document).ready(function(){
                     csrfmiddlewaretoken:$("input[name=csrfmiddlewaretoken]").val()
                     },
                 success: function (){
-                    $("td[data-edtname]").next("td").children("del").contents().unwrap();
-                    $("td[data-edtname]").closest("tr").find("#Value").val("False");
-                    $("td[data-edtname]").closest("tr").removeClass("task-complete");
-                    $("td[data-edtname]").children("span").removeClass("fa-check-square");
-                    $("td[data-edtname]").children("span").addClass("fa-square");
+                    $(edttd).next("td").children("del").contents().unwrap();
+                    $(edttd).closest("tr").find("#Value").val("False");
+                    $(edttd).closest("tr").removeClass("task-complete");
+                    $(edttd).children("span").removeClass("fa-check-square");
+                    $(edttd).children("span").addClass("fa-square");
                 }
             });
         }
@@ -45,11 +46,11 @@ $(document).ready(function(){
                     csrfmiddlewaretoken:$("input[name=csrfmiddlewaretoken]").val()
                     },
                 success: function (){
-                    $("td[data-edtname]").next("td").wrapInner('<del class="wrap"></del>');
-                    $("td[data-edtname]").closest("tr").find("#Value").val("True");
-                    $("td[data-edtname]").closest("tr").addClass("task-complete");
-                    $("td[data-edtname]").children("span").removeClass("fa-square");
-                    $("td[data-edtname]").children("span").addClass("fa-check-square");
+                    $(edttd).next("td").wrapInner('<del class="wrap"></del>');
+                    $(edttd).closest("tr").find("#Value").val("True");
+                    $(edttd).closest("tr").addClass("task-complete");
+                    $(edttd).children("span").removeClass("fa-square");
+                    $(edttd).children("span").addClass("fa-check-square");
                 }
             });
         }
