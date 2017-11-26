@@ -20,7 +20,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '=6wm+k5yo&d7ue3a^!qxdh#wkms0+xtn!a0-z04q!e3r435)r('
+# SECRET_KEY = '=6wm+k5yo&d7ue3a^!qxdh#wkms0+xtn!a0-z04q!e3r435)r('
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -77,17 +78,21 @@ WSGI_APPLICATION = 'things2do.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'things2do',
-        'USER': 'todouser',
-        'PASSWORD': 'Password1',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'things2do',
+#         'USER': 'todouser',
+#         'PASSWORD': 'Password1',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
 
+import dj_database_url
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
+DATABASES['default']['CONN_MAX_AGE'] = 500
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
