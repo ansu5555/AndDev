@@ -20,13 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = '=6wm+k5yo&d7ue3a^!qxdh#wkms0+xtn!a0-z04q!e3r435)r('
-SECRET_KEY = os.environ.get('SECRET_KEY')
+# SECRET_KEY = ''       Given in specific settings file
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = ''        Given in specific settings file
 
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['']      Given in specific settings file
 
 
 # Application definition
@@ -78,22 +77,7 @@ WSGI_APPLICATION = 'things2do.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-# DATABASES = {
-#     # 'default': {
-#     #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#     #     'NAME': 'things2do',
-#     #     'USER': 'todouser',
-#     #     'PASSWORD': 'Password1',
-#     #     'HOST': 'localhost',
-#     #     'PORT': '',
-#     # }
-# }
-
-import dj_database_url
-DATABASES = {'default': dj_database_url.config()}
-# DATABASES['default'] = dj_database_url.config()
-# DATABASES['default'].update(db_from_env)
-# DATABASES['default']['CONN_MAX_AGE'] = 500
+# DATABASES = {}        Given in specific settings file
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -138,4 +122,4 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'todo/staticfiles/'),
 )
 
-STATIC_ROOT = os.path.join(BASE_DIR, '../staticroot/')
+# STATIC_ROOT = ''      Given in specific settings file
