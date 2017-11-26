@@ -78,16 +78,16 @@ WSGI_APPLICATION = 'things2do.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'things2do',
-#         'USER': 'todouser',
-#         'PASSWORD': 'Password1',
-#         'HOST': 'localhost',
-#         'PORT': '',
-#     }
-# }
+DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'things2do',
+    #     'USER': 'todouser',
+    #     'PASSWORD': 'Password1',
+    #     'HOST': 'localhost',
+    #     'PORT': '',
+    # }
+}
 
 import dj_database_url
 DATABASES['default'] = dj_database_url.config()
