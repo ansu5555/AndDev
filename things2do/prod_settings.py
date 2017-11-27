@@ -9,4 +9,4 @@ ALLOWED_HOSTS = ['todomngr.herokuapp.com']
 
 DATABASES = {'default': dj_database_url.config()}
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticroot/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
